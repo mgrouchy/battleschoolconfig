@@ -2,8 +2,8 @@
 cache_dir: ~/Library/Caches/battleschool
 
 sources:
-  local:
-    - playbook.yml
+  #local:
+    #- playbook.yml
 
   url:
     - name: playbook.yml
