@@ -1,0 +1,69 @@
+---
+- hosts: workstation
+
+  tasks:
+    - name: print from playbook
+      debug: msg="in playbooks/playbook.yml"
+
+    - name: easy install pip
+      easy_install: name=pip
+      sudo: yes
+
+    - name: install apps from pip
+      pip: name={{item}}
+      sudo: yes
+      with_items:
+          - virtualenv
+          - virtualenvwrapper
+          - cliff
+          - pyyaml
+          - awscli
+
+    - name: install apps from homebrew
+      homebrew: name={{item}} state=present
+      with_items:
+          - brew-cask
+          - coreutils
+          - git
+          - wget
+          - ctags
+          - ack
+          - gettext
+          - gnu-typist
+          - jpeg
+          - libevent
+          - libmemcached
+          - openssl
+          - readline
+          - gfortran
+          - redis
+          - memcached
+          - memcached-top
+
+    - name: create homdir symlinks
+      file: src={{item.from}} dest={{item.to}} state=link
+      sudo: no
+      with_items:
+         - from: ~/Dropbox/.repositories/personal/dotfiles/.gitconfig
+           to: ~/.gitconfig
+         - from: ~/Dropbox/.repositories/personal/dotfiles/.bash_profile
+           to: ~/.bash_profile
+         - from: ~/Dropbox/.repositories/personal/dotfiles/.vim
+           to: ~/.vim
+         - from: ~/Dropbox/.repositories/personal/newvim/.vimrc
+           to: ~/.vimrc
+         - from: ~/Dropbox/.repositories/personal/newvim/.gvimrc
+           to: ~/.gvimrc
+         - from: ~/Dropbox/.repositories/personal/dotfiles/.pip
+           to: ~/.pip
+         - from: ~/Dropbox/.repositories/personal/dotfiles/.zshrc
+           to: ~/.zshrc
+         - from: ~/Dropbox/.repositories/personal/dotfiles/.zshalias
+           to: ~/.zshalias
+         - from: ~/Dropbox/.repositories/personal/dotfiles/.zshenv
+           to: ~/.zshenv
+         - from: ~/Dropbox/.repositories/personal/dotfiles/.zshfunc
+           to: ~/.zshfunc
+
+
+

@@ -1,0 +1,24 @@
+---
+cache_dir: ~/Library/Caches/battleschool
+
+sources:
+  local:
+    - playbook.yml
+
+#  url:
+#    - name: playbook.yml
+#      url: https://db.tt/VcyI9dvr
+
+  git:
+    - name: 'osx'
+      repo: 'https://github.com/spencergibb/ansible-osx'
+      playbooks:
+         - homebrew.yml                 #must come before any use of homebrew module
+         - alfred.yml
+         - chrome-beta.yml
+         - dropbox.yml
+         - iterm2.yml
+         - macvim.yml
+         - vagrant.yml
+         - virtualbox.yml
+
