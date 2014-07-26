@@ -5,9 +5,9 @@ sources:
   local:
     - playbook.yml
 
-#  url:
-#    - name: playbook.yml
-#      url: https://db.tt/VcyI9dvr
+  url:
+    - name: playbook.yml
+      url: https://raw.githubusercontent.com/mgrouchy/battleschoolconfig/master/playbook.yml
 
   git:
     - name: 'osx'
